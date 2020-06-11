@@ -1,7 +1,5 @@
-// ./src/database/ads.js
-const {getDatabase} = require('./mongo');
-// ... leave the other require statements untouched ...
-const {ObjectID} = require('mongodb');
+require ('../conection')
+const Usr = require('../models/user/users');
 
 const collectionName = 'ads';
 
@@ -11,9 +9,11 @@ async function insertAd(ad) {
   return insertedId;
 }
 
+//app.get()
 async function getAds() {
-  const database = await getDatabase();
-  return await database.collection(collectionName).find({}).toArray();
+  const getUsers = await Usr.find();
+  console.log(getUsers);
+  return getUsers;
 }
 
 // ... leave collectionName, insertAd, and getAds untouched ...
@@ -37,7 +37,6 @@ async function deleteAd(id) {
       },
     );
   }  
-
 module.exports = {
   insertAd,
   getAds,

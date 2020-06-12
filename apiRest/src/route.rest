@@ -13,7 +13,7 @@ content-type: application/json
 {
     "usr" : {"name" : "Javier", "lastname" : "Lopez"},
     "email" : "stalynJvier@gmail.com",
-    "pwd" : "apiRest",   
+    "pwd" : "apiRest1",   
     "permissionLevel": "2" 
 }
 
@@ -23,14 +23,14 @@ GET http://localhost:7070/users HTTP/1.1
 
 ###
 
-PATCH  http://localhost:7070/users/5ee1a3d704303827c4bb9ff5 HTTP/1.1
+PATCH  http://localhost:7070/users/5ee2cee3a249271400263da8 HTTP/1.1
 content-type: application/json
 
 {
   "usr" : {"name" : "Javier", "lastname" : "Chancay"},
   "email" : "stalynJvier@hotmail.com",
-  "pwd" : "apiRest",   
-  "permissionLevel": 2 
+  "pwd" : "forEverAlone",   
+  "permissionLevel": "2" 
 }
 
 ###
@@ -50,7 +50,7 @@ content-type: application/json
 }
 
 ###
-DELETE http://localhost:7070/users/5ee1a3d704303827c4bb9ff5 HTTP/1.1
+DELETE http://localhost:7070/users/5ee2cdc713bd6813b0b227c2 HTTP/1.1
 
 ###
 

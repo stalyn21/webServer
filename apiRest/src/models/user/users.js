@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt-nodejs') //Encrypt pwd
 
 const User = new Schema({
     usr:{name: {type: String, required:true}, lastname: {type: String, required:true}},
@@ -11,21 +10,5 @@ const User = new Schema({
     signupDate: {type: Date, default: Date.now()},
     lastLogin: Date
 })
-
-//encrypt pwd
-/*User.pre('save',(next)=>{
-    let user =this
-    if (!user.isModified('pwd')) return next()
-
-    bcrypt.genSalt(10,(err,salt) => {
-        if(err) return next(err)
-
-        bcrypt.hash(user.pwd, salt, null,(err,hash) =>{
-            if (err) return next(err)
-            user.pwd = hash
-            next()
-        })
-    })
-})*/
 
 module.exports = mongoose.model('users',User)

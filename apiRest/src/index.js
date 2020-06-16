@@ -18,8 +18,8 @@ const app = express();
 app.use(helmet());
 // using bodyParser to parse JSON bodies into JS objects
 //Parsear el body usando body parser
-app.use(bodyParser.json()) // body en formato json
 app.use(bodyParser.urlencoded({ extended: false }))//body formulario
+app.use(bodyParser.json()) // body en formato json
 // enabling CORS for all requests
 app.use(cors());
 // impplement HTTPS

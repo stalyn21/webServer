@@ -1,0 +1,80 @@
+###
+
+GET http://localhost:7070/users HTTP/1.1
+
+###
+
+GET http://localhost:7070/users/5ec5cb85e2a5aa79c249eacc HTTP/1.1
+
+###
+POST http://localhost:7070/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "usr":{"name":"Rous", "lastname":"Lazcano"},
+    "email":"R.lazcano@hotmail.com",
+    "pwd":"Oscarito21"
+}
+
+POST HTTP://localhost:7070/users/register HTTP/1.1
+{
+    "usr": { "name": "Rosa", "lastname": "Lopez"},
+    "email": "rosa.suarez@gmail.com",
+    "pwd": "Dontseeme"
+  }
+
+###
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTgwN2M3ZmE3Mzk5MjczMjNhZDUxYiIsImlhdCI6MTU5MjI3ODk5NywiZXhwIjoxNTkyMzY1Mzk3fQ._pUtYUTM32mle1Rv04t-dkJeCbBb-JXnQh-e-AjWiiM
+###
+GET http://localhost:7070/users/ours HTTP/1.1
+Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTNhZTc0MWY1MTY4MWY1M2Y2NzEzNSIsImlhdCI6MTU5MjI2ODIxNSwiZXhwIjoxNTkyMzU0NjE1fQ.ubQGLtuQ-fps020otwXk8ckRcqUPodvnFjKWpscq7Dg
+###
+
+POST http://localhost:7070/users/sigin HTTP/1.1
+content-type: application/json
+
+{
+    "email" : "Alejandra.lucero@yachaytech.edu.ec",
+    "pwd" : "forEverLDU"
+}
+###
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTgwN2M3ZmE3Mzk5MjczMjNhZDUxYiIsImlhdCI6MTU5MjI2NDY0OCwiZXhwIjoxNTkyMzUxMDQ4fQ.H1ShMG08wTLTKUurrtz0M3QxE_sEA0A8SvsKyt6-ONU
+###
+
+GET http://localhost:7070/users HTTP/1.1
+
+###
+
+PATCH  http://localhost:7070/users/login/5ee1a0935a9c02205d8e5948 HTTP/1.1
+content-type: application/json
+
+{
+  "usr" : {"name" : "Rosa", "lastname" : "Suarez"},
+  "email" : "rosa.suarez@gmail.com",
+  "pwd" : "apiRest" 
+}
+
+###
+
+GET http://localhost:7070/users HTTP/1.1
+
+###
+
+POST http://localhost:7070/users/login HTTP/1.1
+content-type: application/json
+
+{
+    "usr" : {"name" : "Rosa", "lastname" : "Lopez"},
+    "email" : "Rosa.suarez@gmail.com",
+    "pwd" : "Dontseeme",   
+    "permissionLevel": "2" 
+}
+
+###
+DELETE http://localhost:7070/users/5ee3bc8f65a9602a75eee223 HTTP/1.1
+
+###
+
+GET http://localhost:7070/users/ours HTTP/1.1
+###
+

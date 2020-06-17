@@ -10,14 +10,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.0",
+    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-jwt": "^5.3.3",
-    "helmet": "^3.22.0",
+    "helmet": "^3.23.0",
     "jwks-rsa": "^1.8.0",
-    "mongodb": "^3.5.7",
-    "mongodb-memory-server": "^6.6.0",
+    "mongodb": "^3.5.9",
+    "mongodb-memory-server": "^6.6.1",
+    "mongoose": "^5.9.19",
     "morgan": "^1.10.0"
   }
 }

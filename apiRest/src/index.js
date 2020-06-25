@@ -8,12 +8,11 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const routers = require('./routes/routeControllers');
-// auth
-//const jwt = require('express-jwt');
-//const jwksRsa = require('jwks-rsa');
+const authToken = require ('./routes/verifyAuth');
 
 // defining the Express app
 const app = express();
+
 // adding Helmet to enhance your API's security
 app.use(helmet());
 // using bodyParser to parse JSON bodies into JS objects
@@ -26,6 +25,11 @@ app.use(cors());
 // adding morgan to log HTTP requests
 app.use(morgan('combined'));
 
+// interface
+app.use(express.static('public'));
+
+//verify token
+app.use(authToken);
 //Routines post, get, delete, add
 app.use('/users', routers);
 

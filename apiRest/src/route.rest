@@ -71,3 +71,12 @@ DELETE http://localhost:7070/users/5ee2cee3a249271400263da8 HTTP/1.1
 GET http://localhost:7070/users/ours HTTP/1.1
 ###
 
+{"usr": {
+      "name": "Aldair",
+      "lastname": "Yandum"
+    },
+    "email": "aldair.yandum@hotmail.com",
+    "pwd": "whoAreU?" 
+ }
+
+ ###

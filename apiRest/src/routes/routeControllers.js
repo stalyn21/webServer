@@ -5,49 +5,15 @@ const bcrypt = require('bcrypt');
 const r = express.Router();
 const jwt = require('jsonwebtoken');
 const config = require('../config');
-const verifyToken = require('../routes/verifyAuth');
 const Usr = require('../models/user/users');
+const AuthCtrl = require('../controller/authController');
 
 const jsonParser = bodyParser.json();
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Pages
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-r.post('/sigin', async (req, res) => {
-  console.log('POST request ....... User sigin');
-  const user = await Usr.findOne({email: req.body.email});
-  if(!user) {
-      return res.status(404).send("The email doesn't exists");
-  }
-  const validPassword = await user.comparePassword(req.body.pwd, user.pwd);
-  if (!validPassword) {
-      return res.status(401).send({message:'Incorrect password', auth: false, token: null});
-  }
-  const token = jwt.sign({id: user._id}, config.secret, {
-      expiresIn: 60 * 60 * 24
-  });
-  res.status(200).json({message:'Welcome to the dark! ' ,auth: true, token});
-});
-
-
-r.get('/ours',verifyToken , async (req, res) => {
-  console.log('GET request ....... About ours');
-  //res.json('Welcome!');
-  // res.status(200).send(decoded);
-  // Search the Info base on the ID
-  // const user = await User.findById(decoded.id, { password: 0});
-  const user = await Usr.findById(req.userId, { pwd: 0});
-  if (!user) {
-      return res.status(404).send("No user found.");
-  }
-  res.status(200).json(user);
-});
-
-r.get('/logout', function(req, res) {
-  console.log('GET request ....... User logout');
-  res.status(200).send({ message:'Thanks a lot!', auth: false, token: null });
-});
+r.post('/login',AuthCtrl);
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //insert, update, delete, search
@@ -88,14 +54,14 @@ r.post('/register',jsonParser,async (req, res) => {
         expiresIn: 60 * 60 * 24 // expires in 24 hours
       });
       //res.status(201).json(newUser)  --const newUser = await users.save();
-      res.status(201).json({ message: 'Added User', auth: true, token});
+      res.status(201).json({request: 'Your request is being processed .......', message: 'Added User', auth: true, token});
     } catch (err) {
       res.status(400).json({ message: err.message })
     }
 });
 
 // Updating One
-r.patch('/sigin/:id', getUser, async (req, res) => {
+r.patch('/:id', getUser, async (req, res) => {
   console.log('Path request ....... Update one user');
   if (req.body.usr.name != null) {
     res.users.usr.name = req.body.usr.name;
@@ -113,6 +79,9 @@ r.patch('/sigin/:id', getUser, async (req, res) => {
     };
     res.users.pwd = await hashpwd(req.body.pwd);
   }
+  if (req.body.permissionLevel != null) {
+    res.users.permissionLevel = req.body.permissionLevel;
+  }
   try {
     await res.users.save();
     res.status(202).json({ message: 'Updated User' });
@@ -122,7 +91,7 @@ r.patch('/sigin/:id', getUser, async (req, res) => {
 });
 
 // Deleting One
-r.delete('/sigin/:id', getUser, async (req, res) => {
+r.delete('/:id', getUser, async (req, res) => {
   console.log('Delete request ....... Deleted one user');
   try {
     await res.users.remove();
